@@ -13,13 +13,10 @@ En la clase Main, se encuentran los ejemplos de lo que se puede hacer:
 - Ingresar Blobs
 - Retornar un Blob
 
-<<<<<<< Updated upstream
-
 ##Clase Row
 
 No hace falta modificarla. Sólamente es un helper de la clase BDManager, que almacena
 todos los datos, como un ArrayList<String> de una fila de la base de datos Mysql.
-
 
 ##Clase BDManager
 
@@ -27,29 +24,11 @@ Contiene todos los métodos necesarios para las consultas, inserts, updates o de
 la base de datos Mysql. Tiene su propio Javadoc para facilitar el uso de los métodos.
 
 ##Ejemplos:
-=======
-=============
-##Clase Row
-=============
-No hace falta modificarla. Sólamente es un helper de la clase BDManager, que almacena
-todos los datos, como un ArrayList<String> de una fila de la base de datos Mysql.
-
-=============
-##Clase BDManager
-=============
-Contiene todos los métodos necesarios para las consultas, inserts, updates o deletes a 
-la base de datos Mysql. Tiene su propio Javadoc para facilitar el uso de los métodos.
-
-=============
-##Ejemplos:
-=============
->>>>>>> Stashed changes
 
 Inicializar la clase BDManager para hacer consultas rápidas en JAVA sobre Mysql:
 
 BDManager bdmanager = new BDManager('base_de_datos','root','root')
 
-<<<<<<< Updated upstream
 ==================
 para llamar un método de la clase: (ej. consulta)
 
@@ -79,17 +58,3 @@ ArrayList<Row> resultados = bdmanager.consulta("select * from nombre_tabla");
 String contenido_columna = resultados.get(0).getValueAt(0);
 
 System.out.println(contenido_columna);
-=======
-para llamar un método de la clase: (ej. consulta)
-
-ArrayList<Row> resultados = bdmanager.consulta("select * from <nombre_de_tabla>");
-
-para ver los datos resultados de una consulta:
-
-System.out.println(resultados.toString());
-
-para ver los resultados de toda una fila:
-
-Row resultado_fila = resultados.get(0);
-System.out.println(resultado_fila.toString());
->>>>>>> Stashed changes
