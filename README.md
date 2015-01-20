@@ -18,18 +18,12 @@ There's no need to modify it. It is just a helper of the class BDManager, that s
 
 <h4>Attributes:</h4>
 
-<ul>
-	<li><b>int columns</b>: The number of columns in the ArrayList of Strings given when initialized the class.
-	</li>
-</ul>
-
+- ``` int columns```: The number of columns in the ArrayList of Strings given when initialized the class.
 
 <h4>Methods:</h4>
 
-<ul>
-	<li><b>public Row(ArrayList< String > values):</b> Constructor for initializing the class, with an Arraylist of Strings.</li>
-	<li><b>public String getValueAt(int num):</b> Use this to get the value at given position of a Row fetched. See the examples below some clarity.</li>
-</ul>
+- ``` public Row(ArrayList<String> values)```: Constructor for initializing the class, with an Arraylist of Strings.
+- ``` public String getValueAt(int num)```:  Use this to get the value at given position of a Row fetched. See the examples below some clarity.
 
 
 ##Class BDManager
@@ -39,23 +33,13 @@ It contains all the necessary methods for the queries, inserts, updates or delet
 
 <h4>Attributes:</h4>
 
-<ul>
-	<li><b>public final String JDBC_DRIVER:</b> The JDBC Driver, always "com.mysql.jdbc.Driver"</li>
-</ul>
+- ``` public final String JDBC_DRIVER```: The JDBC Driver, always "com.mysql.jdbc.Driver"
+
 
 <h4>Methods:</h4>
 
-<ul>
-	<li><b>public BDManager(String dbname, String username, String password): </b>The constructor of the class.</li>
-	<li>
-		<b>public ArrayList< Row > query(String query)</b>: Method for making queries into the database. This will make ONLY Selects.
-		The query may be for example: "select * from animals;"
-	</li>
-	<li>
-		<b>public int update(String update):</b> 
-	</li>
-</ul>
-
+- ```public BDManager(String dbname, String username, String password) ```: The constructor of the class.
+- ```public ArrayList<Row> query(String query) ```: Method for making queries into the database. This will make ONLY Selects. The query may be for example: "select * from animals;"
 - ```public int update(String update) ``` : Method for making inserts, updates or deletes, and will return the number of rows affected. The update String may be for example: " insert into animals (id, name) values ('1', 'Horse')" 
 
 
