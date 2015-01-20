@@ -23,6 +23,7 @@ There's no need to modify it. It is just a helper of the class BDManager, that s
 <h4>Methods:</h4>
 
 - ``` public Row(ArrayList<String> values)```: Constructor for initializing the class, with an Arraylist of Strings.
+
 - ``` public String getValueAt(int num)```:  Use this to get the value at given position of a Row fetched. See the examples below some clarity.
 
 
@@ -39,9 +40,26 @@ It contains all the necessary methods for the queries, inserts, updates or delet
 <h4>Methods:</h4>
 
 - ```public BDManager(String dbname, String username, String password) ```: The constructor of the class.
-- ```public ArrayList<Row> query(String query) ```: Method for making queries into the database. This will make ONLY Selects. The query may be for example: "select * from animals;"
-- ```public int update(String update) ``` : Method for making inserts, updates or deletes, and will return the number of rows affected. The update String may be for example: " insert into animals (id, name) values ('1', 'Horse')" 
 
+- ```public ArrayList<Row> query(String query) ```: Method for making queries into the database. This will make ONLY Selects. The query may be for example: "select * from animals;"
+
+- ```public int update(String update) ``` : Method for making inserts, updates or deletes, returning the number of rows affected. The update String may be for example: " insert into animals (id, name) values ('1', 'Horse')" 
+
+- ``` public void updateBlob(String query, String blobRoute)```: Method for Inserting, deleting or updating a Blob. The blobRoute has to be the global route for the Blob you are referencing. For example: D:\\MyFiles\Images\image.png
+
+- ``` public ImageIcon getImage(String query, String columnName)```: Method for getting a blob as an object of the class ImageIcon.  The parameter columName has to be the name of the column that contains the image you want to return. If, for example, we have the table *people*:
+
+name | email | photo
+-----|-------|------
+Juan | email@company.com | BLOB
+
+then your calling to the getImage method would be:
+
+```java
+	//initialize bdmanager
+
+	ImageIcon image = bdmanager.getImage("select * from people where name = 'Juan'", "photo");
+```
 
 ##Examples:
 
@@ -111,25 +129,43 @@ and this would be the outcome:
 Please, notice that each result is an ArrayLists of Strings, so, if you have booleans, numbers, blobs, etc, they will be casted to String.
 
 ==================
-para ver los contenidos de toda una fila encontrada:
+
+From the last example, we saw how to get all the employees in a query, but, what if we want to get only the first of them? well, we would do:
 
 ```java
-ArrayList<Row> resultados = bdmanager.consulta("select * from nombre_tabla");
+ArrayList<Row> employees = bdmanager.query("select * from employees");
 
-Row resultado_fila = resultados.get(0);
+Row employee = employees.get(0);
 
-System.out.println(resultado_fila.toString());
+System.out.println(employee.toString());
+
 ```
 
+and the outcome would be:
+
+```java
+	[1 Johny johny@company.com +011354987]
+```
+
+with all the fields as Strings
+
 ==================
-para ver un dato en específico proveniente de una columna:
+
+Finally, to see an specific column of a row, for example the name of the first employee, we would do:
 
 ```java
 
-ArrayList<Row> resultados = bdmanager.consulta("select * from nombre_tabla");
+ArrayList<Row> employees = bdmanager.query("select * from employees where name = 'Johny'");
 
-String contenido_columna = resultados.get(0).getValueAt(0);
+Row johny = employees.get(0); //to get the first row
 
-System.out.println(contenido_columna);
+System.out.println(johny.getValueAt(1)); //because Rows are zero-indexed
+//and name would be the index number 1
 
+```
+
+and the outcome would be:
+
+```java
+	Johny
 ```
