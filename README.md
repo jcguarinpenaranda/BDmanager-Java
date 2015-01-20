@@ -52,9 +52,11 @@ It contains all the necessary methods for the queries, inserts, updates or delet
 		The query may be for example: "select * from animals;"
 	</li>
 	<li>
-		<b>public int update(String update):</b> Method for making inserts, updates or deletes, and will return the number of rows affected. The update String may be for example: " insert into animals (id, name) values ('1', 'Horse')" 
+		<b>public int update(String update):</b> 
 	</li>
 </ul>
+
+- ```public int update(String update) ``` : Method for making inserts, updates or deletes, and will return the number of rows affected. The update String may be for example: " insert into animals (id, name) values ('1', 'Horse')" 
 
 
 ##Examples:
