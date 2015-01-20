@@ -18,13 +18,22 @@ There's no need to modify it. It is just a helper of the class BDManager, that s
 
 <h4>Attributes:</h4>
 
-``` public int columns ``` : The number of columns in the ArrayList of Strings given when initialized the class.
+```java
+	 public int columns 
+```
+The number of columns in the ArrayList of Strings given when initialized the class.
 
 <h4>Methods:</h4>
 
-``` public Row(ArrayList<String> values) ``` : Constructor for initializing the class, with an Arraylist of Strings.
+```java
+	 public Row(ArrayList<String> values) 
+```
+Constructor for initializing the class, with an Arraylist of Strings.
 
-```  public String getValueAt(int num) ``` : Use this to get the value at given position of a Row fetched. See the examples below some clarity.
+```java
+	 public String getValueAt(int num) 
+```
+Use this to get the value at given position of a Row fetched. See the examples below some clarity.
 
 ##Clase BDManager
 
@@ -33,12 +42,18 @@ It contains all the necessary methods for the queries, inserts, updates or delet
 
 <h4>Attributes:</h4>
 
- ``` public final String JDBC_DRIVER ``` : The JDBC Driver, always "com.mysql.jdbc.Driver"
+ ```java
+ 	 public final String JDBC_DRIVER 
+ ``` 
+ The JDBC Driver, always "com.mysql.jdbc.Driver"
 
 
 <h4>Methods:</h4>
 
-``` public String getValueAt(int num) ``` : Use this to get the value at given position of a Row fetched. See the examples below some clarity.
+```java 
+	public String getValueAt(int num) 
+```
+Use this to get the value at given position of a Row fetched. See the examples below some clarity.
 
 ##Examples:
 
