@@ -1,4 +1,4 @@
-#BDmanager-Java
+#BDmanager-Java (Español)
 ==============
 
 BDManager es un conjunto de clases (BDManager y Row) que permite realizar consultas a 

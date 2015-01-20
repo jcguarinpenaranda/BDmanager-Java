@@ -1,9 +1,7 @@
 /*
-IMPORTANTE:
-La clase ROW sirve como complemento para BD Manager.
-Un row es la abstracción de lo que es una fila en una 
-tabla de la base de datos.
-No es necesario modificar nada aqui para que funcione.
+IMPORTANT:
+Class Row is just an abstraction of a Queue of the database,
+and there is no need to modify it.
 */
 package BDManager;
 
@@ -11,11 +9,11 @@ import java.util.ArrayList;
 
 /**
  *
- * @author Juan Camilo Guarín Peñaranda
+ * @author Juan Camilo Guarín P @ Otherwise Studios
  */
 public class Row {
     
-    private int columns;
+    public int columns;
     ArrayList<String> values;
     
     public Row(ArrayList<String> values){
@@ -26,8 +24,8 @@ public class Row {
     /**
      *
      * @param num
-     * @return Retorna un String que es el contenido de una
-     * columna de la búsqueda en una tabla
+     * @return Returns a String, with the value of
+     * a column in a table.
      */
     public String getValueAt(int num){
         return values.get(num);

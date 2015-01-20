@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package BDManager;
 
 import java.io.File;
@@ -22,7 +17,7 @@ import javax.swing.JOptionPane;
 
 /**
  *
- * @author Juan Camilo Guarín P.
+ * @author Juan Camilo Guarín P @ Otherwise Studios
  */
 public class BDManager {
 
@@ -35,9 +30,9 @@ public class BDManager {
 
     /**
      *
-     * @param dbname Nombre de la base de datos
-     * @param username El username de la base de datos
-     * @param password El password de la base de datos
+     * @param dbname The name of the database
+     * @param username The username of the database
+     * @param password The password of the database
      * @throws SQLException
      */
     public BDManager(String dbname, String username, String password) throws SQLException {
@@ -48,24 +43,23 @@ public class BDManager {
 
     /**
      *
-     * @param consulta Ej: "select * from <nombre_tabla>"
-     * @return Arreglo de objetos Row, con el contenido de toda la consulta.
-     * Un ejemplo de algo retornado sería [[Juan 123456],[Daniela 456789]]
-     * Donde la primera columna de la primera persona (Juan) seria el nombre y 
-     * la segunda un código cualquiera
+     * @param query Ex: "select * from <table_name>"
+     * @return ArrayList<Row>, with the content of the query.
+     * An example of the returned, would be [[John Guarin],[Daniela Mera]]
+     * Where the first column of the first person (John) would be the name and 
+     * the second column would be the lastname
      * @throws ClassNotFoundException
      * @throws SQLException
-     * Utilizar este método solo para consultas. La clase devuelve ArrayList<Row>, que contiene todos los 
-     * valores que retorna una consulta.
+     * 
      */
-    public ArrayList<Row> consulta(String consulta) throws ClassNotFoundException, SQLException {
+    public ArrayList<Row> query(String query) throws ClassNotFoundException, SQLException {
         Statement statement;
         ResultSet resultSet;
         ArrayList<Row> arreglo = new ArrayList<>();
         Class.forName(JDBC_DRIVER);
         connection = DriverManager.getConnection(mysqlUrl + dbname, username, password);
         statement = connection.createStatement();
-        resultSet = statement.executeQuery(consulta);
+        resultSet = statement.executeQuery(query);
         ResultSetMetaData metaData = resultSet.getMetaData();
 
 //        System.out.println(metaData.getColumnCount());
@@ -90,20 +84,18 @@ public class BDManager {
 
     /**
      *
-     * @param adicionOupdateOdelete Una adición (insert) o un update (update) o
-     * eliminar un dato (delete). Ej: "insert into <tabla> (nom_col1) values('val1')"
-     * @return Número de columnas afectadas
+     * @param update May be an insert, an update or a delete. Ej: "insert into <table> (name_col1) values('val1')"
+     * @return Number of rows affected
      * @throws ClassNotFoundException
      * @throws SQLException
-     * Utilizar este método para todo lo que tiene que ver con
-     * INSERTS, UPDATES O DELETES
+     * Use this method for everything that has to do with Inserts, deletes or updates
      */
-    public int update(String adicionOupdateOdelete) throws ClassNotFoundException, SQLException {
+    public int update(String update) throws ClassNotFoundException, SQLException {
         Statement statement;
         Class.forName(JDBC_DRIVER);
         connection = DriverManager.getConnection(mysqlUrl + dbname, username, password);
         statement = connection.createStatement();
-        int rowsAffected = statement.executeUpdate(adicionOupdateOdelete);
+        int rowsAffected = statement.executeUpdate(update);
 
         try {
             statement.close();
@@ -117,20 +109,20 @@ public class BDManager {
 
     /**
      *
-     * @param consulta Ej: insert into <tabla> (nombre_columna) values (?)
-     * @param rutaBlob Ruta global hasta la imagen que se quiere insertar
+     * @param query Ej: insert into <table> (column_name) values (?)
+     * @param blobRoute The global route for the blob you are inserting. Example: C://Users/User/Documents/file.png
      * @throws ClassNotFoundException
      * @throws SQLException
      * @throws FileNotFoundException
      */
-    public void updateBlob(String consulta, String rutaBlob) throws ClassNotFoundException, SQLException, FileNotFoundException {
+    public void updateBlob(String query, String blobRoute) throws ClassNotFoundException, SQLException, FileNotFoundException {
         Statement statement;
         Class.forName(JDBC_DRIVER);
         connection = DriverManager.getConnection(mysqlUrl + dbname, username, password);
         statement = connection.createStatement();
 
-        PreparedStatement stmt = connection.prepareStatement(consulta);
-        File imagen = new File(rutaBlob);
+        PreparedStatement stmt = connection.prepareStatement(query);
+        File imagen = new File(blobRoute);
         FileInputStream fis = new FileInputStream(imagen);
         stmt.setBinaryStream(1, fis, (int) imagen.length());
         stmt.execute();
@@ -146,24 +138,25 @@ public class BDManager {
 
     /**
      *
-     * @param consulta Ej: select * from <tabla_que_contiene_imagen> where id = xxxx
-     * OJO: solo retorna UN ImageIcon. Si necesita retornar varios ImageIcon,
-     * llame esta función varias veces
-     * @param nombreColumna El nombre de la columna que contiene la imagen a retornar
-     * @return Un objeto de la clase ImageIcon para mostrar luego en un JFrame o algo parecido
+     * @param query Ex: select * from <table_with_image> where id = xxxx
+     * KEEP AN EYE: This will only return one image. If you need to return several images
+     * then call this method several times.
+     * @param columnName The name of the column that has the image you want to get.
+     * @return An object of the class ImageIcon for you put it in an IFrame or something similar.
      * @throws ClassNotFoundException
      * @throws SQLException
      */
-    public ImageIcon getImage(String consulta, String nombreColumna) throws ClassNotFoundException, SQLException {
+    public ImageIcon getImage(String query, String columnName) throws ClassNotFoundException, SQLException {
         Statement statement;
         Class.forName(JDBC_DRIVER);
         connection = DriverManager.getConnection(mysqlUrl + dbname, username, password);
         statement = connection.createStatement();
-        ResultSet rs = statement.executeQuery(consulta);
+        ResultSet rs = statement.executeQuery(query);
+
         //Tratamiento para el campo BLOB
         Blob blob = null;
         while (rs.next()) {
-            blob = rs.getBlob(nombreColumna);
+            blob = rs.getBlob(columnName);
         }
 
         //Tratamiento como ImageIcon
@@ -178,6 +171,7 @@ public class BDManager {
             System.out.println("Database error");
             System.exit(1);
         }
+
         return icon;
     }
 }
