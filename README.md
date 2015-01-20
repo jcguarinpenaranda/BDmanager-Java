@@ -23,6 +23,8 @@ There's no need to modify it. It is just a helper of the class BDManager, that s
 ```
 The number of columns in the ArrayList of Strings given when initialized the class.
 
+
+
 <h4>Methods:</h4>
 
 ```java
@@ -30,12 +32,15 @@ The number of columns in the ArrayList of Strings given when initialized the cla
 ```
 Constructor for initializing the class, with an Arraylist of Strings.
 
+
 ```java
 	 public String getValueAt(int num) 
 ```
 Use this to get the value at given position of a Row fetched. See the examples below some clarity.
 
-##Clase BDManager
+
+
+##Class BDManager
 
 It contains all the necessary methods for the queries, inserts, updates or deletes that you can make to a Mysql database. It's got its own Javadoc for making it easier to understand how to use it.
 
@@ -48,12 +53,33 @@ It contains all the necessary methods for the queries, inserts, updates or delet
  The JDBC Driver, always "com.mysql.jdbc.Driver"
 
 
+
 <h4>Methods:</h4>
 
 ```java 
-	public String getValueAt(int num) 
+	public BDManager(String dbname, String username, String password)
 ```
-Use this to get the value at given position of a Row fetched. See the examples below some clarity.
+Constructor of the class.
+
+
+
+```java
+	public ArrayList<Row> query(String query)
+```
+Method for making queries into the database. This will make ONLY Selects.
+The query may be for example: ``` select * from animals;```
+
+
+
+
+```java
+	public int update(String update)
+```
+Method for making inserts, updates or deletes, and will return the number of rows affected. The update String may be for example: ``` insert into animals (id, name) values ('1', 'Horse')```
+
+
+
+
 
 ##Examples:
 
