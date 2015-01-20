@@ -17,15 +17,14 @@ In the class "main.java", you can find the examples of what can be done:
 There's no need to modify it. It is just a helper of the class BDManager, that stores all the data returned from a Mysql Query, as an ``` ArrayList<String> ```
 
 <h4>Attributes:</h4>
-<ul>
-	<li>``` public int columns ``` : The number of columns in the ArrayList of Strings given when initialized the class.</li>
-</ul>
+
+``` public int columns ``` : The number of columns in the ArrayList of Strings given when initialized the class.
 
 <h4>Methods:</h4>
-<ul>
-	<li>``` public Row(ArrayList<String> values) ``` : Constructor for initializing the class, with an Arraylist of Strings.</li>
-	<li>```  public String getValueAt(int num) ``` : Use this to get the value at given position of a Row fetched. See the examples below some clarity.</li>
-</ul>
+
+``` public Row(ArrayList<String> values) ``` : Constructor for initializing the class, with an Arraylist of Strings.
+
+```  public String getValueAt(int num) ``` : Use this to get the value at given position of a Row fetched. See the examples below some clarity.
 
 ##Clase BDManager
 
@@ -33,14 +32,13 @@ It contains all the necessary methods for the queries, inserts, updates or delet
 
 
 <h4>Attributes:</h4>
-<ul>
-	<li> ``` public final String JDBC_DRIVER ``` : The JDBC Driver, always "com.mysql.jdbc.Driver"</li>
-</ul>
+
+ ``` public final String JDBC_DRIVER ``` : The JDBC Driver, always "com.mysql.jdbc.Driver"
+
 
 <h4>Methods:</h4>
-<ul>
-	<li>``` public String getValueAt(int num) ``` : Use this to get the value at given position of a Row fetched. See the examples below some clarity.</li>
-</ul>
+
+``` public String getValueAt(int num) ``` : Use this to get the value at given position of a Row fetched. See the examples below some clarity.
 
 ##Examples:
 
