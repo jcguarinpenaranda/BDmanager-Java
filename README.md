@@ -169,3 +169,13 @@ and the outcome would be:
 ```java
 	Johny
 ```
+
+##Important
+
+Feel free to use BDManager as you want. Feel free to modify it as you like for your own projects.
+The main objective of it is to provide an easy access to Mysql from Java, and if you find ways to improve it, please tell me.
+
+By Juan Camilo Guarin Peñaranda
+jcguarinpenaranda@gmail.com
+http://otherwise-studios.com
+
